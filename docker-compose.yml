@@ -1,0 +1,14 @@
+version: '3'
+services:
+  proxy:
+    build: ./build
+    image: proxy_certbot:latest
+    container_name: proxy_certbot
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"  
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d
+      - ./nginx.conf:/etc/nginx/nginx.conf 
+      - ./letsencrypt:/etc/letsencrypt
